@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth', 'EnsureClientAssigned', 'web', 'SurveyHan
     Route::resource('service', 'ServiceController');
     Route::get('service/{service}/delete', 'ServiceController@delete')->name('service.delete');
     Route::get('servicehistory', 'ServiceController@history')->name('service.history');
+    Route::get('servicehistory/export', 'ServiceController@historyExport')->name('service.history.export');
     Route::get('service/finalize/{service}', 'ServiceController@finalize')->name('service.finalize');
     Route::get('service/{service}/inform', 'ServiceController@createServiceInformation')->name('service.createServiceInformation');
     Route::post('service/{service}/inform/store', 'ServiceController@storeServiceInformation')->name('service.storeServiceInformation');

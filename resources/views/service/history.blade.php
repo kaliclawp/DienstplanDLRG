@@ -4,7 +4,21 @@
 @endsection
 
 @section('content')
-<h1>Dienst Historie</h1>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>Dienst Historie</h2>
+            <ul class="header-dropdown m-r--5">
+                <li>
+                    <a href="{{ route('service.history.export') }}" class="btn btn-default waves-effect">
+                        <i class="material-icons">file_download</i> Exportieren
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 {{-- Pagination --}}
 <div class="d-felx justify-content-center">
   {{ $services->links() }}

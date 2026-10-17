@@ -424,6 +424,27 @@ class ServiceController extends Controller
     }
 
     /**
+     * Display all past services as a flat table for export.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function historyExport()
+    {
+      if(!Auth::user()->isAdmin()) {
+          abort(402, "Nope.");
+      }
+
+      $services = Service::whereDate('date', '<=', Carbon::now())
+          ->where('client_id', '=', Auth::user()->currentclient_id)
+          ->orderBy('date', 'desc')
+          ->with('positions.qualification')
+          ->with('positions.user')
+          ->get();
+
+      return view('service.history_export', compact('services'));
+    }
+
+    /**
      * Finalize a service.
      *
      * @return
